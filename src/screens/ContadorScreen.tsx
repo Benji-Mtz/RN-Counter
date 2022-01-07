@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { Fab } from '../components/Fab';
 
 const ContadorScreen = () => {
 
@@ -11,23 +12,24 @@ const ContadorScreen = () => {
                 Contador: { contador }
             </Text>
 
-            <TouchableOpacity
-                style={ styles.fabLocationBL }
-                onPress={ () => setContador(contador - 1 ) }
-            >   
-                <View style={ styles.fab }>
-                    <Text style={ styles.fabText }>-1</Text>
-                </View>
-            </TouchableOpacity>
+            <Fab 
+                title="+1"
+                onPress={ () => setContador( contador + 1 ) }
+            />
+            <Fab 
+                title="-1"
+                onPress={ () => setContador( contador - 1 ) }
+                position='bl'
+            />
 
-            <TouchableOpacity
+            {/* <TouchableOpacity
                 style={ styles.fabLocationBR }
                 onPress={ () => setContador(contador + 1 ) }
             >   
                 <View style={ styles.fab }>
                     <Text style={ styles.fabText }>+1</Text>
                 </View>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </View>
     )
 }
@@ -38,33 +40,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     title: {
+        // position: 'relative' | 'absolute', default: relative 
         fontSize: 40,
         textAlign: 'center',
-        top: -15,
+        top: -15, // Sube -15
     },
-    fabLocationBL: {
-        position: 'absolute',
-        bottom: 25,
-        left: 25
-    },
-    fabLocationBR: {
-        position: 'absolute',
-        bottom: 25,
-        right: 25
-    },
-    fab: {
-        backgroundColor: '#5856D6',
-        width: 60,
-        height: 60,
-        borderRadius: 100,
-        justifyContent: 'center'
-    },
-    fabText: {
-        color: 'white',
-        fontSize: 25,
-        fontWeight: 'bold',
-        alignSelf: 'center'
-    }
 })
 
 export default ContadorScreen
